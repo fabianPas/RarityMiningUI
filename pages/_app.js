@@ -118,7 +118,7 @@ function	MyApp(props) {
 
 	React.useEffect(() => {
 		ReactGA.initialize('UA-207960124-1');
-		ReactGA.pageview('window.location.pathname + window.location.search');
+		ReactGA.pageview(window.location.pathname + window.location.search);
 	});
 
 	return (
