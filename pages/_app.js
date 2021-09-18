@@ -12,7 +12,7 @@ import	Navbar							from	'components/Navbar';
 import	Footer							from	'components/Footer';
 import	SectionNoWallet					from	'sections/SectionNoWallet';
 import	useWindowInFocus				from	'hook/useWindowInFocus';
-import  TagManager 						from    'react-gtm-module';
+import  ReactGA 							from 'react-ga';
 
 
 import	'tailwindcss/tailwind.css';
@@ -117,7 +117,8 @@ function	MyApp(props) {
 	const	{Component, pageProps} = props;
 
 	React.useEffect(() => {
-		TagManager.initialize({gtmId: 'G-G864CNFST3'});
+		ReactGA.initialize('UA-207960124-1');
+		ReactGA.pageview('window.location.pathname + window.location.search');
 	});
 
 	return (
