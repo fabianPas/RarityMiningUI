@@ -12,6 +12,8 @@ import	Navbar							from	'components/Navbar';
 import	Footer							from	'components/Footer';
 import	SectionNoWallet					from	'sections/SectionNoWallet';
 import	useWindowInFocus				from	'hook/useWindowInFocus';
+import  TagManager 						from    'react-gtm-module';
+
 
 import	'tailwindcss/tailwind.css';
 import	'style/Default.css';
@@ -83,9 +85,6 @@ function	AppWrapper(props) {
 				<meta name={'robots'} content={'index,nofollow'} />
 				<meta name={'googlebot'} content={'index,nofollow'} />
 				<meta charSet={'utf-8'} />
-
-				<script async src={'https://www.googletagmanager.com/gtag/js?id=G-K7D9V3VSKJ'}></script>
-				<script>{injectGA()}</script>
 			</Head>
 			<DefaultSeo
 				title={'Rarity Mining'}
@@ -108,17 +107,7 @@ function	AppWrapper(props) {
 		</>
 	);
 }
-const injectGA = () => {
-	if (typeof window == 'undefined') {
-		return;
-	}
 
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){window.dataLayer.push(arguments);}
-	gtag('js', new Date());
-
-	gtag('config', 'G-K7D9V3VSKJ');
-};
 
 const getLibrary = (provider) => {
 	return new ethers.providers.Web3Provider(provider, 'any');
@@ -126,6 +115,10 @@ const getLibrary = (provider) => {
 
 function	MyApp(props) {
 	const	{Component, pageProps} = props;
+
+	React.useEffect(() => {
+		TagManager.initialize({gtmId: 'G-G864CNFST3'});
+	});
 
 	return (
 		<Web3ReactProvider getLibrary={getLibrary}>
